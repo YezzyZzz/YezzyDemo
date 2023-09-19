@@ -18,4 +18,8 @@ public class Java8Features {
 
     }
 
+    public static void Lambda(){
+
+    }
+
 }
