@@ -1,7 +1,9 @@
 package com.example.yezzydemo.demo.java8_features;
 
-import java.util.Arrays;
-import java.util.List;
+import java.time.LocalDate;
+import java.util.*;
+import java.util.function.Function;
+import java.util.function.Supplier;
 
 
 public class Java8Features {
@@ -15,6 +17,8 @@ public class Java8Features {
         interfaceDefault();
         lambdaTest();
         functionalInterface();
+        builtInFunctional();
+        optionalTest();
     }
 
     public static void interfaceDefault(){
@@ -42,6 +46,28 @@ public class Java8Features {
         Student student2 = provider2.build(4,"jack");
         System.out.println(student2.age);
         System.out.println(student2.name);
+    }
+
+    public static void builtInFunctional(){
+        //consumer
+        List<String> list = Arrays.asList("a","b","c");
+        list.forEach(ele -> System.out.println(ele));
+        //supplier
+        Supplier<LocalDate> supplier = LocalDate::now;
+        LocalDate currentDate = supplier.get();
+        System.out.println(currentDate);
+        //function
+        Function<String,Integer> function = s -> Integer.parseInt(s);
+        System.out.println(function.apply("123"));
+    }
+
+    public static void optionalTest(){
+        Map<String,String> map = new HashMap<>();
+        map.put("hello","s");
+        String name = Optional.ofNullable(map)
+                .map(m -> m.get("hello")).orElse(null);
+        System.out.println(name);
+
     }
 
 
